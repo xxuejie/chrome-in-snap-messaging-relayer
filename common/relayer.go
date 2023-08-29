@@ -25,18 +25,16 @@ func RelayData(
 			}
 		case err := <-error1:
 			if err == io.EOF {
-				break
+				return nil
 			}
 			return err
 		case err := <-error2:
 			if err == io.EOF {
-				break
+				return nil
 			}
 			return err
 		}
 	}
-
-	return nil
 }
 
 func channelFromReader(reader io.Reader) (chan []byte, chan error) {
