@@ -67,4 +67,11 @@ func process(c *net.TCPConn) {
 	if err != nil {
 		log.Printf("Error relaying data: %v", err)
 	}
+
+	if err := cmd.Process.Kill(); err != nil {
+		log.Printf("Error killing process: %v", err)
+	}
+	if err := cmd.Wait(); err != nil {
+		log.Printf("Error waiting process: %v", err)
+	}
 }
